@@ -11,7 +11,37 @@ struct HomeView: View {
     @StateObject var viewModel: HomeViewModel
     
     var body: some View {
-        Text("Hello, \(viewModel.username)!")
-            .foregroundStyle(.black)
+        BaseView(builderContent: {
+            VStack {
+                HStack {
+                    Spacer()
+                    
+                    Button {
+                        viewModel.logout()
+                    } label: {
+                        Text("Logout")
+                            .foregroundStyle(.red)
+                            .bold()
+                    }
+                }
+                
+                ScrollView(.vertical, showsIndicators: false) {
+                    LazyVStack {
+                        ForEach(viewModel.listUser) { user in
+                            Text(user.username)
+                                .onTapGesture {
+                                    viewModel.showProfile(user)
+                                }
+                        }
+                        .padding(.vertical, 20)
+                    }
+                }
+                .onAppear {
+                    viewModel.loadListUser()
+                }
+            }
+        })
+        .navigationBarBackButtonHidden(true)
+        .navigationBarHidden(true)
     }
 }

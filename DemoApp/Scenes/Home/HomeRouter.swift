@@ -8,7 +8,7 @@
 import Foundation
 
 protocol HomeRouter {
-    
+    func showProfileView(user: UserModel)
 }
 
 extension CoreRouter: HomeRouter {}

@@ -21,5 +21,7 @@ struct BaseView<BuilderContent: View>: View {
         .padding(.horizontal, 24)
         .padding(.bottom, 100)
         .edgesIgnoringSafeArea(.bottom)
+//        .navigationBarBackButtonHidden(true)
+//        .navigationBarHidden(true)
     }
 }
